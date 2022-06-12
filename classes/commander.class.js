@@ -4,8 +4,8 @@ import { pipeline } from 'stream'
 import { createReadStream, createWriteStream } from 'fs';
 import { createBrotliCompress, createBrotliDecompress } from "zlib";
 
-import {getHashByFile} from "./util-functions/get-hash-by-file.js";
-import {CliUtil} from "./util-functions/cli-util.class.js";
+import {getHashByFile} from "../util-functions/get-hash-by-file.js";
+import {CliUtil} from "../util-functions/cli-util.class.js";
 
 
 export class Commander {

@@ -1,5 +1,5 @@
 import os from "os";
-import {InvalidInputError} from "./errors/invalid-input.error.js";
+import {InvalidInputError} from "../errors/invalid-input.error.js";
 
 export class OS {
     possibleCommands;

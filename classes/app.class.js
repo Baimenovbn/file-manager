@@ -1,4 +1,4 @@
-import {Commander} from "./commander.js";
+import {Commander} from "./commander.class.js";
 import {OS} from "./os.class.js";
 
 export class App {
