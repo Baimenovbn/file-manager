@@ -1,4 +1,5 @@
 import os from "os";
+import {InvalidInputError} from "./errors/invalid-input.error.js";
 
 export class OS {
     possibleCommands;
@@ -10,12 +11,12 @@ export class OS {
         ]);
     }
 
-    handleCommand(command) {
+    handleExpression(command) {
         const option = command.split(' ')[1];
         if (this.possibleCommands.has(option)) {
             console.log(this[option.slice(2).trim()]());
         } else {
-            console.error('Invalid input');
+            throw new InvalidInputError()
         }
     }
 

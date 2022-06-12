@@ -15,7 +15,13 @@ export class App {
         const commander = new Commander(this.logger, osHandler);
 
         process.stdin.setEncoding('utf-8');
-        process.stdin.on('data', (command) => commander.handleCommand(command));
+        process.stdin.on('data', (expression) => {
+            try {
+                commander.handleCommand(expression)
+            } catch (e) {
+                console.error(e.message);
+            }
+        });
     }
 
     initOnAppDestroyHandler() {

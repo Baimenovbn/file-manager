@@ -1,6 +1,6 @@
 import os from 'os';
 
-import { getArgMap } from "./get-arg-map.js";
+import { getArgMap } from "./util-functions/get-arg-map.js";
 import { Logger } from "./logger.class.js";
 import { App } from "./app.class.js";
 
