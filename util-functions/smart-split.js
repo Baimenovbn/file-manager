@@ -1,6 +1,6 @@
-export const smartSplit = (fullCommand) => {
+let smartSplit = (fullCommand) => {
     const commandEnd = fullCommand.indexOf(' ');
-    const options = fullCommand.slice(commandEnd + 1);
+    let options = fullCommand.slice(commandEnd + 1);
 
     const args = [fullCommand.slice(0, commandEnd)];
 
@@ -8,42 +8,30 @@ export const smartSplit = (fullCommand) => {
 
     let currArg = '';
 
-    for (let i = 0; i < charArr.length; i++) {
-        const char = charArr[i];
-
-        if (char === ' ') {
-            continue;
-        } else if (char === '"') {
-            const nextDoubleQuote = options.indexOf('"');
-            if (!nextDoubleQuote) {
-                throw new OperationFailedError();
-            }
-
+    for (let i = 0; i < options.length; i++) {
+        const char = options[i];
+        options = options.slice(i + 1);
+        if (char === '"') {
+            const nextDoubleQuote = options.indexOf('"', );
+            console.log(`k=${options.slice(i, nextDoubleQuote)}`);
             args.push(options.slice(i, nextDoubleQuote));
+            i = nextDoubleQuote + 2;
         } else {
-            const nextSpace = options.indexOf(' ');
-            if (!nextSpace) {
-                throw new OperationFailedError();
+            let nextSpace = options.indexOf(' ');
+            if (nextSpace === -1) {
+                nextSpace = options.length - 1;
             }
-
+            console.log(i, 'space', nextSpace);
+            let k = options.slice(i, nextSpace);
+            console.log("k2="+k);
             args.push(options.slice(i, nextSpace));
+            if (!nextSpace) {
+                i = charArr.length-1;
+            } else {
+                i = nextSpace;
+            }
         }
-
     }
 }
 
-
-// cd     fi/cvbrst "asd/a second"
-// cd first "second"
-// cd asd/sd/sad/a/ asdasdsa/asd asd asd
-// cd "asdasd/asdasd" asdasd/asda asdasd
-// command=initialStr.substring(+1
-// if (cut[i] = ' ') {
-//     if (cur[i+1] = '"') {
-//         str2 = initialStr.substring(i+1);
-//         str2.indexOf('"')
-//
-//     }
-// }
-
-//"fi/cvb rst" "fi/cvb rst"
+smartSplit('cd "aaaa/bbbb ccc" ddd/eeee/ffff');

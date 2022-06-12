@@ -12,11 +12,13 @@ export class Commander {
     logger;
     osHandler;
     classMap;
+    FS;
 
-    constructor(logger, osHandler) {
+    constructor(logger, osHandler, FS) {
         this.logger = logger;
         this.osHandler = osHandler;
         this.classMap = new Map().set('os', this.osHandler);
+        this.FS = FS;
     }
 
     handleCommand(expression) {
@@ -31,8 +33,7 @@ export class Commander {
         }
 
         else if (expression === 'up') {
-            const upperDir = path.parse(this.logger.getCwd()).dir;
-            this.logger.setCwd(upperDir);
+            this.FS.up()
         }
 
         else if (expression.startsWith('cd')) {
